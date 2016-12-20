@@ -58,6 +58,34 @@ Array.prototype.shellSort = function () {
         }
     }
 };
+
+//归并排序
+var mergeSort = function (arr) {
+    var n = parseInt(arr.length/2);
+    if(n < 1){
+        return arr;
+    }else{
+        var arr1 = mergeSort(arr.slice(0, n));
+        var arr2 = mergeSort(arr.slice(n));
+    }
+    var a = [];
+    var i = 0, j = 0;
+    while(i<arr1.length && j<arr2.length){
+        if(arr1[i]<arr2[j]){
+            a.push(arr1[i]);
+            i++;
+        }else{
+            a.push(arr2[j]);
+            j++;
+        }
+    }
+    a = a.concat(arr1.slice(i));
+    a = a.concat(arr2.slice(j));
+    return a;
+}
+
+//快速排序
 arr = [3,8,7,4,1,9,0,2,5,6];
-arr.shellSort();
-console.log(arr);
+var b = mergeSort(arr);
+//arr.shellSort();
+console.log(b);
